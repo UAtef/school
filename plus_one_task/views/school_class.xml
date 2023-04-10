@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="school_class_form_view" model="ir.ui.view">
+            <field name="name">School Class</field>
+            <field name="model">school.class</field>
+            <field name="arch" type="xml">
+                <form string="School Class">
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="New"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="subject_id"/>
+                                <field name="student_id"/>
+                            </group>
+                            <group>
+                                <field name="teacher_id"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="school_class_tree_view" model="ir.ui.view">
+            <field name="name">School Class</field>
+            <field name="model">school.class</field>
+            <field name="arch" type="xml">
+                <tree string="School Class">
+                    <field name="subject_id"/>
+                    <field name="student_id"/>
+                    <field name="teacher_id"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="school_class_graph_view" model="ir.ui.view">
+            <field name="name">School Class</field>
+            <field name="model">school.class</field>
+            <field name="arch" type="xml">
+                <graph string="School Class">
+                    <field name="subject_id"/>
+                    <field name="student_id"/>
+                    <field name="teacher_id"/>
+                </graph>
+            </field>
+        </record>
+
+        <record id="school_class_pivot_view" model="ir.ui.view">
+            <field name="name">school class</field>
+            <field name="model">school.class</field>
+            <field name="arch" type="xml">
+                <pivot string="ModelTitle">
+                    <field name="subject_id"/>
+                    <field name="student_id"/>
+                    <field name="teacher_id"/>
+                </pivot>
+            </field>
+        </record>
+
+        <record id="school_class_search_view" model="ir.ui.view">
+            <field name="name">School Class</field>
+            <field name="model">school.class</field>
+            <field name="arch" type="xml">
+                <search string="Search">
+                    <group expand="1" string="Group By">
+                        <filter string="Subject" name="subject_id" domain="[]"
+                                context="{'group_by':'subject_id'}"/>
+                        <filter string="Student" name="student_id" domain="[]"
+                                context="{'group_by':'student_id'}"/>
+                        <filter string="Teacher" name="teacher_id" domain="[]"
+                                context="{'group_by':'teacher_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="school_class_kanban_view" model="ir.ui.view">
+            <field name="name">school.class.kanban</field>
+            <field name="model">school.class</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="name"/>
+                    <field name="subject_id"/>
+                    <field name="student_id"/>
+                    <field name="teacher_id"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_res_partner_kanban">
+                                <div class="oe_kanban_details">
+                                    <strong class="o_kanban_record_title oe_partner_heading">
+
+
+                                        <div name="name" class="mt-1">
+                                            Name:
+                                            <field name="name"/>
+                                        </div>
+                                        <br/>
+
+                                        <div name="Subject" class="mt-1">
+                                            Subject:
+                                            <field name="subject_id"/>
+                                        </div>
+                                        <br/>
+
+                                        <div name="Student" class="mt-1">
+                                            Student:
+                                            <field name="student_id"/>
+                                        </div>
+
+                                        <br/>
+                                        <div name="Teacher" class="mt-1">
+                                            Teacher:
+                                            <field name="teacher_id"/>
+                                        </div>
+
+                                    </strong>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="school_class_act_window" model="ir.actions.act_window">
+            <field name="name">School Class</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">school.class</field>
+            <field name="view_mode">kanban,tree,form,graph,pivot</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is No school class Created Yet.
+                </p>
+            </field>
+        </record>
+
+        <record id="Subject_Subject_act_window" model="ir.actions.act_window">
+            <field name="name">Subject</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">subject.subject</field>
+            <field name="view_mode">kanban,tree,form,graph,pivot</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is No Subject Created Yet.
+                </p>
+            </field>
+        </record>
+
+        <menuitem name="School" id="School_menu"   web_icon="/home/osama/PycharmProjects/pythonProject1/odoo-15.0/tamara_downgrade/plus_one_task/static/description/icon1.png"/>
+        <menuitem name="School Class" id="School_Class_menu" parent="School_menu" action="school_class_act_window"/>
+        <menuitem name="Subject" id="Subject_menu" parent="School_menu" action="Subject_Subject_act_window"/>
+        <menuitem name="Teacher" id="Teacher_menu" parent="School_menu" action="account.res_partner_action_customer"/>
+        <menuitem name="Student" id="Student_menu" parent="School_menu" action="account.res_partner_action_customer"/>
+
+    </data>
+</odoo>
